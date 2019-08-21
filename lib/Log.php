@@ -29,4 +29,21 @@ class Log
             return false; //something went wrong
         }
     }
+
+    public function getLogs()
+    {
+        $query = "SELECT * FROM log ORDER BY create_date";
+
+        $this->db->query($query);
+
+        //Get results
+        try {
+            $results = $this->db->resultSet();
+        } catch (Exception $e) {
+            die($e);
+            $results = false;
+        }
+
+        return $results;
+    }
 }

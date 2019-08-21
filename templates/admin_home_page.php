@@ -62,6 +62,12 @@
                         View Requests
                     </a>
                 </div>
+                <div class="col-md-6 menuCardContainer">
+                    <a href="view_log.php" class="menu-card bg-light hvr-grow">
+                        <span class="panel-card-icon"><i class="fas fa-scroll"></i></span><br>
+                        View Logs
+                    </a>
+                </div>
                 <!--Admin Nav-->
             </nav>
             <!--Menu Navigation-->
