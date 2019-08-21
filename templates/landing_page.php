@@ -42,22 +42,19 @@
                         <!--Welcome Text-->
 
                         <!--Form-->
-                        <form name="searchform" method="get" action="http://library.ciu.edu.bd/cgi-bin/koha/opac-search.pl" id="searchform" autocomplete="off">
-                            <h4 style="text-align: left">Search</h4>
-                            <hr class="m-0 mb-2">
+                        <form action="view_books.php" method="post" autocomplete="off">
+                            <h3>Search</h3>
+                            <hr class="mt-0">
                             <div class="form-row p-1">
                                 <div class="col-sm-6 p-0">
-                                    <input type="text" name="q" placeholder="Book Name" class="form-control search-text-input">
+                                    <input type="text" id="keyword" name="keyword" placeholder="Keyword" class="form-control search-text-input" required>
                                 </div>
                                 <div class="col-sm-4 p-0">
-                                    <select name="idx" id="masthead_search" class="form-control search-text-input">
-                                        <option value="">Library catalog</option>
-                                        <option value="ti">Title</option>
-                                        <option value="au">Author</option>
-                                        <option value="su">Subject</option>
-                                        <option value="nb">ISBN</option>
-                                        <option value="se">Series</option>
-                                        <option value="callnum,phr">Call number</option>
+                                    <select name="search_by" id="search_by" class="form-control search-text-input" required>
+                                        <option value="title">Title</option>
+                                        <option value="author">Author</option>
+                                        <option value="isbn">ISBN</option>
+                                        <option value="publisher">Publisher</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2 p-0">
@@ -127,7 +124,7 @@
             </div>
             <!--parentSliderContainer-->
 
-            <p><a href="javascript:viewAll('new-arrival', '#2E3192');" class="btn btn-primary">View All</a></p>
+            <p><a href="view_books.php" class="btn btn-primary">View All</a></p>
             <hr class="bg-light">
         </div>
 
@@ -279,7 +276,7 @@
         </div>
     </div>
     <!--Categories-->
-    
+
     <!--Library Info-->
     <div class="container-fluid book-section">
         <h1>Informations</h1>

@@ -85,10 +85,20 @@
                         <option value="Accounting" <?php echo ($result->category == 'Accounting') ? 'selected' : ''; ?>>Accounting</option>
                     </select>
                 </div>
+                <?php if (isset($_SESSION['admin_id'])) : ?>
                 <div class="form-group col-md-6">
                     <label for="inventory">Inventory<span style="color: red;">*</span></label>
                     <input type="number" value="<?php echo $result->inventory; ?>" class="form-control" id="inventory" name="inventory" placeholder="Inventory" required>
                 </div>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['student_id'])) : ?>
+                <div class="form-group col-md-6 text-center">
+                    <p class="lead">Add to cart</p>
+                    <a href="add_request.php?isbn=<?php echo $result->isbn; ?>" class="btn btn-danger">
+                        <i style="font-size: 200%" class="fas fa-cart-plus"></i>
+                    </a>
+                </div>
+                <?php endif; ?>
             </div>
             <?php if (isset($_SESSION['admin_id'])) : ?>
             <div class="text-center">

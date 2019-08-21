@@ -56,6 +56,12 @@
                         View Leases
                     </a>
                 </div>
+                <div class="col-md-6 menuCardContainer">
+                    <a href="view_requests.php" class="menu-card bg-light hvr-grow">
+                        <span class="panel-card-icon"><i class="fas fa-shopping-cart"></i></span><br>
+                        View Requests
+                    </a>
+                </div>
                 <!--Admin Nav-->
             </nav>
             <!--Menu Navigation-->

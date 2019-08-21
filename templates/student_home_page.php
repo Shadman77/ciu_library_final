@@ -25,38 +25,14 @@
                 <?php require_once "include/nav_menu_cards.php"; ?>
                 <!--Menu Cards-->
 
-                <!--Admin Nav-->
+                <!--Student Nav-->
                 <div class="col-md-6 menuCardContainer">
-                    <a href="add_book.php" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-book-medical"></i></span><br>
-                        Add Book
+                    <a href="view_requests.php" class="menu-card bg-light hvr-grow">
+                        <span class="panel-card-icon"><i class="fas fa-shopping-cart"></i></span><br>
+                        View Cart
                     </a>
                 </div>
-                <div class="col-md-6 menuCardContainer">
-                    <a href="student_accounts.php?status=pending&page=0" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-users"></i></span><br>
-                        Student Accounts
-                    </a>
-                </div>
-                <div class="col-md-6 menuCardContainer">
-                    <a href="admin_accounts.php?status=pending&page=0" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-users-cog"></i></span><br>
-                        Admin Accounts
-                    </a>
-                </div>
-                <div class="col-md-6 menuCardContainer">
-                    <a href="add_lease.php" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-folder-plus"></i></span><br>
-                        Add New Lease
-                    </a>
-                </div>
-                <div class="col-md-6 menuCardContainer">
-                    <a href="view_leases.php?page=0" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-copy"></i></span><br>
-                        View Leases
-                    </a>
-                </div>
-                <!--Admin Nav-->
+                <!--Student Nav-->
             </nav>
             <!--Menu Navigation-->
         </div>
