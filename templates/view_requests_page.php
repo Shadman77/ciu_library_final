@@ -159,7 +159,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id; ?>" class="btn btn-info">
+                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&ready=true'; ?>" class="btn btn-info">
                                     Ready
                                 </a>
                             </div>

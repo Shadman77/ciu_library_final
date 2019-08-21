@@ -86,4 +86,57 @@ class Request
 
         return $results;
     }
+
+    public function getSingleRequest($id)
+    {
+        $query = "SELECT * FROM request where id = :id";
+
+        $this->db->query($query);
+
+        $this->db->bind(':id', $id);
+
+        try {
+            $row = $this->db->single();
+        } catch (PDOException $e) {
+            return false;
+        }
+
+        return $row;
+    }
+
+    public function deleteRequest($id)
+    {
+        $query = "DELETE FROM request WHERE id = :id";
+        $this->db->query($query);
+
+        $this->db->bind(':id', $id);
+
+        //executing
+        $success = $this->db->execute();
+
+        if ($success) {
+            return true; //Update successfull
+        } else {
+            return false; //something went wrong
+        }
+    }
+
+    public function updateRequest($id)
+    {
+        $query = "UPDATE request 
+        SET status = 'ready'  
+        WHERE id = :id";
+        $this->db->query($query);
+
+        $this->db->bind(':id', $id);
+
+        //executing
+        $success = $this->db->execute();
+
+        if ($success) {
+            return true; //Update successfull
+        } else {
+            return false; //something went wrong
+        }
+    }
 }
