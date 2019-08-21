@@ -17,6 +17,9 @@
         <?php elseif (isset($_SESSION['student_id'])) : ?>
 
         <a class="nav-link hvr-grow" href="javascript:togglePopupMenu('studentSubMenu');">
+            <?php if ($_SESSION['ready'] && $_SESSION['notification']) : ?>
+            <p class="text-right m-0 text-danger animate-flicker"><i class="fas fa-bell"></i></p>
+            <?php endif; ?>
             <i class="fas fa-user nav-icon"></i><br>
             Student
         </a>

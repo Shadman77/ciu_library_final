@@ -28,8 +28,18 @@
                 <!--Student Nav-->
                 <div class="col-md-6 menuCardContainer">
                     <a href="view_requests.php" class="menu-card bg-light hvr-grow">
-                        <span class="panel-card-icon"><i class="fas fa-shopping-cart"></i></span><br>
+                        <span class="panel-card-icon"><i class="fas fa-shopping-cart"></i></span>
+                        <?php if ($_SESSION['ready'] && $_SESSION['notification']) : ?>
+                        <i class="fas fa-bell text-danger animate-flicker"></i>
+                        <?php endif; ?>
+                        <br>
                         View Cart
+                    </a>
+                </div>
+                <div class="col-md-6 menuCardContainer">
+                    <a href="view_requests.php" class="menu-card bg-light hvr-grow">
+                        <span class="panel-card-icon"><i class="fas fa-shopping-cart"></i></span><br>
+                        View Requests
                     </a>
                 </div>
                 <!--Student Nav-->

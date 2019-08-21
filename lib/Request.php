@@ -139,4 +139,27 @@ class Request
             return false; //something went wrong
         }
     }
+
+    public function checkIfReady($student_id)
+    {
+        $query = "SELECT * FROM request WHERE student_id = :student_id AND status = 'ready' ORDER BY create_date";
+
+        $this->db->query($query);
+
+        $this->db->bind(':student_id', $student_id);
+
+        //Get results
+        try {
+            $results = $this->db->resultSet();
+        } catch (Exception $e) {
+            die($e);
+            $results = false;
+        }
+
+        if (count($results) > 0) {
+            return true;
+        }
+
+        return $results;
+    }
 }

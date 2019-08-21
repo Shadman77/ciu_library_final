@@ -20,3 +20,13 @@ require_once 'config.php'; //require_once works
 spl_autoload_register(function ($class) {
     include 'lib/' . $class . '.php';
 });
+
+
+/**Notification for student */
+if (isset($_SESSION['student_id'])) {
+    if (!isset($_SESSION['notification'])) {
+        $_SESSION['notification'] = true;
+    }
+    $request = new Request;
+    $_SESSION['ready'] = $request->checkIfReady($_SESSION['student_id']);
+}

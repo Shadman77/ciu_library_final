@@ -1,5 +1,9 @@
 <?php
 include_once 'config/init.php';
+/**Checking if notification is already shown*/
+if (isset($_SESSION['notification'])) {
+    $_SESSION['notification'] = false;
+}
 
 if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
     $template = new Template('templates/view_requests_page.php');

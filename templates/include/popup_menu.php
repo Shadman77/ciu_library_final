@@ -96,7 +96,11 @@
     <div class="row popup-submenu-container">
         <form action="student_home.php" method="post" class="col-6 menuCardContainer">
             <button class="menu-card hvr-grow bg-light">
-                <i style="font-size: 200%;" class="fas fa-graduation-cap"></i><br>
+                <i style="font-size: 200%;" class="fas fa-graduation-cap"></i>
+                <?php if ($_SESSION['ready'] && $_SESSION['notification']) : ?>
+                <i class="fas fa-bell text-danger animate-flicker"></i>
+                <?php endif; ?>
+                <br>
                 Student Panel
             </button>
         </form>
