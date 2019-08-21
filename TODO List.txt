@@ -1,0 +1,5 @@
+Forget backend, this is a front end project only
+
+
+How to we get image in the slide from the koha library database?
+How to know which book as uploaded in the database frist?
