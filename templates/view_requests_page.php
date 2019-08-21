@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>CIU | LLRC | Books</title>
+    <title>CIU | LLRC | Requests</title>
     <?php require_once "include/header_include.php"; ?>
 
 </head>
@@ -24,6 +24,37 @@
                 <!--Menu Cards-->
                 <?php require_once "include/nav_menu_cards.php"; ?>
                 <!--Menu Cards-->
+
+                <?php if (isset($_SESSION['admin_id'])) : ?>
+                <!--Admin Nav-->
+                <div class="col-md-12 menuCardContainer">
+                    <div class="menu-card bg-light">
+                        <h4>Search</h4>
+                        <hr class="m-0 mb-2">
+                        <form action="view_requests.php" method="post" autocomplete="off">
+                            <div class="form-row p-1">
+                                <div class="col-sm-6 p-0">
+                                    <input type="text" id="keyword" name="keyword" placeholder="Keyword" class="form-control search-text-input" required>
+                                </div>
+                                <div class="col-sm-4 p-0">
+                                    <select name="search_by" id="search_by" class="form-control search-text-input" required>
+                                        <option value="student_id">Student ID</option>
+                                        <option value="isbn">ISBN</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 p-0">
+                                    <button type="submit" class="btn search-button"><i class="fas fa-search"></i>
+                                        <span class="search-btn-text">Search</span></button>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="view_requests.php" method="post" class="form-group col-12 mt-2">
+                            <label for="reset">Remove Filters</label><br>
+                            <input type="submit" name="reset" value="Reset" class="btn bg-danger text-light search-button" style="max-width: 100px;">
+                        </form>
+                    </div>
+                </div>
+                <?php endif; ?>
 
                 <?php
                 $loopStart = $page * 10;
@@ -54,22 +85,87 @@
                                 <p class="lead">Status: <?php echo $results[$i]->status; ?></p>
                                 <p class="text-left">
                                     <?php if (isset($_SESSION['admin_id'])) : ?>
-                                    <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id; ?>" class="btn btn-info">
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#verifyReady">
                                         Ready
-                                    </a>
-                                    <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&leased=true'; ?>" class="btn btn-primary">
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verifyLeased">
                                         Leased
-                                    </a>
+                                    </button>
                                     <?php endif; ?>
-                                    <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&delete=true'; ?>" class="btn btn-danger">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#verifyDelete">
                                         Delete
-                                    </a>
+                                    </button>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--Student Accounts Nav-->
+
+                <!--Modals-->
+                <div class="modal fade" id="verifyDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Delete Request?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&delete=true'; ?>" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="verifyLeased" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Request Leased?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&leased=true'; ?>" class="btn btn-primary">
+                                    Leased
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="verifyReady" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Request Ready?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id; ?>" class="btn btn-info">
+                                    Ready
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <?php endfor; ?>
             </nav>

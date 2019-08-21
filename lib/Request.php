@@ -31,16 +31,50 @@ class Request
     public function getRequests()
     {
         if (isset($_SESSION['student_id'])) {
-            $query = "SELECT * FROM request WHERE student_id = :student_id ORDER BY create_date DESC";
+            $query = "SELECT * FROM request WHERE student_id = :student_id ORDER BY create_date";
 
             $this->db->query($query);
 
             $this->db->bind(':student_id', $_SESSION['student_id']);
         } else {
-            $query = "SELECT * FROM request ORDER BY create_date DESC";
+            $query = "SELECT * FROM request ORDER BY create_date";
 
             $this->db->query($query);
         }
+
+        //Get results
+        try {
+            $results = $this->db->resultSet();
+        } catch (Exception $e) {
+            die($e);
+            $results = false;
+        }
+
+        return $results;
+    }
+
+    public function getRequestsBySearch($keyword, $search_by)
+    {
+        $query = "SELECT * FROM request";
+        /**We add the filter later one by one */
+
+
+        /**Search */
+        switch ($search_by) {
+            case 'student_id':
+                $query = $query . " WHERE student_id = :keyword";
+                break;
+            case 'isbn':
+                $query = $query . " WHERE isbn = :keyword";
+                break;
+        }
+
+        $query = $query . " ORDER BY create_date";
+
+        $this->db->query($query);
+
+        /**Binding */
+        $this->db->bind(':keyword', $keyword);
 
         //Get results
         try {
