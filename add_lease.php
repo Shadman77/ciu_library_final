@@ -17,6 +17,13 @@ if (isset($_POST["submit"])) {
                     if (isset($_SESSION['leaseResults'])) {
                         unset($_SESSION['leaseResults']);
                     }
+
+                    /**Add Logs */
+                    try {
+                        $log = new Log;
+                        $log->addLog('Leased ' . $_POST['isbn'], $_POST['student_id'] , $_SESSION['admin_id']);
+                    } catch (Exception $e) { }
+
                     redirect('admin_home.php', 'Successfully Added', 'success');
                 } else {
                     redirect('admin_home.php', 'Something went wrong.', 'error');

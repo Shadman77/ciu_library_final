@@ -53,6 +53,13 @@ if (isset($_POST["submit"])) {
                 if (isset($_SESSION['viewBooksResult'])) {
                     unset($_SESSION['viewBooksResult']);
                 }
+                
+                /**Add to logs */
+                try {
+                    $log = new Log;
+                    $log->addLog('Book Added ' . $_POST['isbn'], 0, $_SESSION['admin_id']);
+                } catch (Exception $e) { }
+
                 redirect('admin_home.php', 'Book added successfully', 'status');
                 break;
             case -1:

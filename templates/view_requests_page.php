@@ -177,7 +177,7 @@
                 <ul class="pagination justify-content-center">
                     <!--First Page-->
                     <li class="page-item <?php echo ($page > 0) ? '' : 'disabled'; ?>">
-                        <a class="page-link" href="view_books.php?&page=<?php echo 0; ?>">
+                        <a class="page-link" href="view_requests.php?&page=<?php echo 0; ?>">
                             <i class="fas fa-angle-double-left"></i>
                         </a>
                     </li>
@@ -185,17 +185,16 @@
 
                     <!--Previous Page-->
                     <li class="page-item <?php echo ($page > 0) ? '' : 'disabled'; ?>">
-                        <a class="page-link" href="view_books.php?&page=<?php echo $page - 1; ?>">
+                        <a class="page-link" href="view_requests.php?&page=<?php echo $page - 1; ?>">
                             <i class="fas fa-caret-left"></i>
                         </a>
                     </li>
                     <!--Previous Page-->
 
-
                     <?php if ($page >= 5) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="#">
-                            <?php echo $page - 5; ?>
+                        <a class="page-link" href="view_requests.php?&page=<?php echo $page - 5; ?>">
+                            <?php echo $page - 5 + 1; ?>
                         </a>
                     </li>
                     <?php endif; ?>
@@ -204,15 +203,17 @@
                             <?php echo $page + 1; ?>
                         </a>
                     </li>
-                    <?php if ((($page + 4) * 10 + 1)  <= count($results)) : ?>
+                    <?php if ($lastPage >= ($page + 5)) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="#">15</a>
+                        <a class="page-link" href="view_requests.php?&page=<?php echo $page - 5; ?>">
+                            <?php echo $page + 5 + 1; ?>
+                        </a>
                     </li>
                     <?php endif; ?>
 
                     <!--Next Page-->
                     <li class="page-item <?php echo (count($results) > ($page * 10) + 10) ? '' : 'disabled'; ?>">
-                        <a class="page-link" href="view_books.php?&page=<?php echo $page + 1; ?>">
+                        <a class="page-link" href="view_requests.php?&page=<?php echo $page + 1; ?>">
                             <i class="fas fa-caret-right"></i>
                         </a>
                     </li>
@@ -220,7 +221,7 @@
 
                     <!--Last Page-->
                     <li class="page-item  <?php echo (count($results) > ($page * 10) + 10) ? '' : 'disabled'; ?>">
-                        <a class="page-link" href="view_books.php?&page=<?php echo $lastPage; ?>">
+                        <a class="page-link" href="view_requests.php?&page=<?php echo $lastPage; ?>">
                             <i class="fas fa-angle-double-right"></i>
                         </a>
                     </li>

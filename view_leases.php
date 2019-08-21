@@ -8,13 +8,18 @@ if (isset($_GET['delete']) && isset($_GET['id'])) {
     $book = $record->getSingleBook($lease->isbn);
 
     if ($record->changeBookLease($lease->isbn, $book->leased, "sub")) {
-        echo 'change book lease';
+
         if ($record->deleteLease($_GET['id'])) {
             //Delete previously deleted results
             if (isset($_SESSION['leaseResults'])) {
                 unset($_SESSION['leaseResults']);
             }
-            echo '<br>deleteLease';
+            /**Add Logs */
+            try {
+                $log = new Log;
+                $log->addLog('Lease Deleted ' . $lease->isbn, $lease->student_id, $_SESSION['admin_id']);
+            } catch (Exception $e) { }
+
             redirect('admin_home.php', 'Deleted Successfully.', 'success');
         } else {
             redirect('index.php', 'Something went wrong.', 'error');

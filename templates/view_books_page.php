@@ -154,8 +154,8 @@
 
                     <?php if ($page >= 5) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="#">
-                            <?php echo $page - 5; ?>
+                        <a class="page-link" href="view_books.php?&page=<?php echo $page - 5; ?>">
+                            <?php echo $page - 5 + 1; ?>
                         </a>
                     </li>
                     <?php endif; ?>
@@ -164,9 +164,11 @@
                             <?php echo $page + 1; ?>
                         </a>
                     </li>
-                    <?php if ((($page + 4) * 10 + 1)  <= count($results)) : ?>
+                    <?php if ($lastPage >= ($page + 5)) : ?>
                     <li class="page-item">
-                        <a class="page-link" href="#">15</a>
+                        <a class="page-link" href="view_books.php?&page=<?php echo $page - 5; ?>">
+                            <?php echo $page + 5 + 1; ?>
+                        </a>
                     </li>
                     <?php endif; ?>
 

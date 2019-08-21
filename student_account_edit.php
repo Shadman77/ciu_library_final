@@ -69,6 +69,13 @@ if (isset($_POST['submit'])) {
             if (isset($_SESSION['studentAccountsResults'])) {
                 unset($_SESSION['studentAccountsResults']);
             }
+
+            /**Add to logs */
+            try {
+                $log = new Log;
+                $log->addLog('Student Account Updated', $_POST['old_id'], $_SESSION['admin_id']);
+            } catch (Exception $e) { }
+
             redirect('admin_home.php', 'Update successful.', 'success');
         } {
             redirect('admin_home.php', 'Something went wrong.', 'error');
@@ -86,6 +93,13 @@ if (isset($_POST['submit'])) {
         if (isset($_SESSION['studentAccountsResults'])) {
             unset($_SESSION['studentAccountsResults']);
         }
+
+        /**Add to logs */
+        try {
+            $log = new Log;
+            $log->addLog('Student Account Deleted', $_POST['old_id'], $_SESSION['admin_id']);
+        } catch (Exception $e) { }
+
         redirect('admin_home.php', 'Delete successful.', 'success');
     } else {
         redirect('admin_home.php', 'Something went wrong.', 'error');

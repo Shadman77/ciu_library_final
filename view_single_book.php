@@ -66,6 +66,13 @@ if (isset($_POST['submit'])) {
             if (isset($_SESSION['viewBooksResult'])) {
                 unset($_SESSION['viewBooksResult']);
             }
+
+            /**Add to logs */
+            try {
+                $log = new Log;
+                $log->addLog('Book Updated ' . $_POST['old_isbn'], 0, $_SESSION['admin_id']);
+            } catch (Exception $e) { }
+
             redirect('admin_home.php', 'Update successful.', 'success');
         } {
             redirect('admin_home.php', 'Something went wrong.', 'error');
@@ -83,6 +90,12 @@ if (isset($_POST['submit'])) {
         if (isset($_SESSION['viewBooksResult'])) {
             unset($_SESSION['viewBooksResult']);
         }
+
+        try {
+            $log = new Log;
+            $log->addLog('Book Updated ' . $_POST['old_isbn'], 0, $_SESSION['admin_id']);
+        } catch (Exception $e) { }
+
         redirect('admin_home.php', 'Delete successful.', 'success');
     } else {
         redirect('admin_home.php', 'Something went wrong.', 'error');

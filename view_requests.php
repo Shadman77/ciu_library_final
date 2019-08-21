@@ -25,6 +25,13 @@ if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
                     if (isset($_SESSION['viewRequestsResult'])) {
                         unset($_SESSION['viewRequestsResult']);
                     }
+
+                    /**Add Logs */
+                    try {
+                        $log = new Log;
+                        $log->addLog('Delete Request ' . $singleRequest->isbn, $singleRequest->student_id, $_SESSION['admin_id']);
+                    } catch (Exception $e) { }
+
                     redirect('view_requests.php', 'Successfully Deleted', 'success');
                 } else {
                     redirect('index.php', 'Something went wrong.' . 'error');
@@ -40,10 +47,18 @@ if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
     /**Ready */
     if (isset($_GET['ready']) && isset($_GET['id'])) {
         $request = new Request;
+        $singleRequest = $request->getSingleRequest($_GET['id']);
         if ($request->updateRequest($_GET['id'])) {
             if (isset($_SESSION['viewRequestsResult'])) {
                 unset($_SESSION['viewRequestsResult']);
             }
+
+            /**Add Logs */
+            try {
+                $log = new Log;
+                $log->addLog('Ready Request ' . $singleRequest->isbn, $singleRequest->student_id, $_SESSION['admin_id']);
+            } catch (Exception $e) { }
+
             redirect('view_requests.php', 'Successfully Updated.', 'success');
         } else {
             redirect('index.php', 'Something went wrong.' . 'error');
@@ -74,6 +89,13 @@ if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
                     if (isset($_SESSION['leaseResults'])) {
                         unset($_SESSION['leaseResults']);
                     }
+
+                    /**Add Logs */
+                    try {
+                        $log = new Log;
+                        $log->addLog('Request to Leased ' . $singleRequest->isbn, $singleRequest->student_id, $_SESSION['admin_id']);
+                    } catch (Exception $e) { }
+
                     redirect('view_requests.php', 'Successfully Updated.', 'success');
                 } else {
                     redirect('index.php', 'Something went wrong.' . 'error');
