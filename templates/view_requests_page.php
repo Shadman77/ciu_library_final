@@ -136,12 +136,13 @@
                             <div class="modal-body">
                                 Request Leased?
                             </div>
-                            <div class="modal-footer">
+                            <form method="post" action="view_requests.php" class="modal-footer">
+                                <input name="id" type="hidden" value="<?php echo $results[$i]->id; ?>">
+                                <label for="due_date">Due Date</label>
+                                <input name="due_date" type="date" placeholder="Due Date" required>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <a href="<?php echo 'view_requests.php?id=' . $results[$i]->id . '&leased=true'; ?>" class="btn btn-primary">
-                                    Leased
-                                </a>
-                            </div>
+                                <input name="leased" type="submit" value="Leased" class="btn btn-primary">
+                            </form>
                         </div>
                     </div>
                 </div>

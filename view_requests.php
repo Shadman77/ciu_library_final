@@ -46,18 +46,21 @@ if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
         }
     }
 
-    /**Leased *///WE NEED TO USED POST METHOD FOR THIS AND ALSO DUE DATE
-    if (isset($_GET['leased']) && isset($_GET['id'])) {
+    /**Leased */
+    if (isset($_POST['leased']) && isset($_POST['id'])) {
         //Get the request in question first
         $request = new Request;
-        $singleRequest = $request->getSingleRequest($_GET['id']);
+        $singleRequest = $request->getSingleRequest($_POST['id']);
 
         if (!$singleRequest) {
             redirect('index.php', 'Something went wrong.' . 'error');
         }
 
         //First we delete the request
-        if ($request->deleteRequest($_GET['id'])) {
+        if ($request->deleteRequest($_POST['id'])) {
+            if (isset($_SESSION['viewRequestsResult'])) {
+                unset($_SESSION['viewRequestsResult']);
+            }
             //Get in the book in question
             $record = new Record;
             $book = $record->getSingleBook($singleRequest->isbn);
@@ -67,7 +70,12 @@ if (isset($_SESSION['student_id']) || isset($_SESSION['admin_id'])) {
                     if (isset($_SESSION['leaseResults'])) {
                         unset($_SESSION['leaseResults']);
                     }
+                    redirect('view_requests.php', 'Successfully Updated.', 'success');
+                } else {
+                    redirect('index.php', 'Something went wrong.' . 'error');
                 }
+            } else {
+                redirect('index.php', 'Something went wrong.' . 'error');
             }
         } else {
             redirect('index.php', 'Something went wrong.' . 'error');
