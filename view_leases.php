@@ -2,6 +2,10 @@
 
 include_once 'config/init.php'; //Session is started in this code
 
+if (!isset($_SESSION['admin_id'])) {
+    redirect('index.php', 'Please log in as admin.', 'error');
+}
+
 if (isset($_GET['delete']) && isset($_GET['id'])) {
     $record = new Record;
     $lease = $record->getSingleLease($_GET['id']);

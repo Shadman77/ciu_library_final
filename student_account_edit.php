@@ -1,6 +1,11 @@
 <?php
 
 include_once 'config/init.php'; //Session is started in this code
+
+if (!isset($_SESSION['admin_id'])) {
+    redirect('index.php', 'Please log in as admin.', 'error');
+}
+
 /*
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");

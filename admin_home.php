@@ -2,6 +2,10 @@
 
 include_once 'config/init.php';
 
+if(!isset($_SESSION['admin_id'])){
+    redirect('index.php','Please log in as admin.','error');
+}
+
 
 
 $template = new Template('templates/admin_home_page.php');

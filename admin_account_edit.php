@@ -1,6 +1,11 @@
 <?php
 
 include_once 'config/init.php'; //Session is started in this code
+
+if (!isset($_SESSION['admin_id'])) {
+    redirect('index.php', 'Please log in as admin.', 'error');
+}
+
 if (isset($_POST['submit'])) {
     //Check if logged in as an admin
     if (!isset($_SESSION['admin_id'])) {

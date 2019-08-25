@@ -2,6 +2,9 @@
 
 include_once 'config/init.php';
 
+if(!isset($_SESSION['student_id'])){
+    redirect('index.php','Please log in as student.','error');
+}
 
 
 $template = new Template('templates/student_home_page.php');
